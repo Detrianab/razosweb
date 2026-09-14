@@ -10,11 +10,11 @@ import {
   FABRIC_COLORS,
   WHATSAPP_DISPLAY,
 } from "@/lib/trazos";
-import heroRoques from "@/assets/hero-image.png.asset.json";
-import heroCanaima from "@/assets/hero-image-2.png.asset.json";
-import heroMerida from "@/assets/hero-image-3.png.asset.json";
-import heroZulia from "@/assets/hero-image-4.png.asset.json";
-import heroFalcon from "@/assets/hero-image-5.png.asset.json";
+import heroRoques from "@/assets/hero-image.png";
+import heroCanaima from "@/assets/hero-image-2.png";
+import heroMerida from "@/assets/hero-image-3.png";
+import heroZulia from "@/assets/hero-image-4.png";
+import heroFalcon from "@/assets/hero-image-5.png";
 
 const MorphSlider = lazy(() => import("@/components/ui/MorphSlider"));
 const ShirtViewer = lazy(() =>
@@ -44,11 +44,11 @@ export const Route = createFileRoute("/")({
 });
 
 const HERO_SLIDES = [
-  { image: heroRoques.url, caption: "Los Roques" },
-  { image: heroCanaima.url, caption: "Canaima" },
-  { image: heroMerida.url, caption: "Sierra Nevada, Mérida" },
-  { image: heroZulia.url, caption: "Salinas del Zulia" },
-  { image: heroFalcon.url, caption: "Médanos de Coro" },
+  { image: heroRoques, caption: "Los Roques" },
+  { image: heroCanaima, caption: "Canaima" },
+  { image: heroMerida, caption: "Sierra Nevada, Mérida" },
+  { image: heroZulia, caption: "Salinas del Zulia" },
+  { image: heroFalcon, caption: "Médanos de Coro" },
 ];
 
 const SHOWCASE = COLLECTIONS[0]!.designs[0]!;
