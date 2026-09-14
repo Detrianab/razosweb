@@ -1,4 +1,4 @@
-import logo from "@/assets/trazos-logo-alpha.png.asset.json";
+import logo from "@/assets/trazos-logo-alpha.png";
 import { BRAND, BRAND_TAGLINE } from "@/lib/trazos";
 
 type Props = {
