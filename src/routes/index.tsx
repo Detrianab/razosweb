@@ -11,7 +11,7 @@ import {
   WHATSAPP_DISPLAY,
 } from "@/lib/trazos";
 import heroRoques from "@/assets/hero-image.png";
-import heroCanaima from "@/assets/hero-image-2.png";
+import heroCanaima from "@/assets/hero-image-2.webp";
 import heroMerida from "@/assets/hero-image-3.png";
 import heroZulia from "@/assets/hero-image-4.png";
 import heroFalcon from "@/assets/hero-image-5.png";
