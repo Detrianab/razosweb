@@ -10,7 +10,7 @@ type Props = {
 export function TrazosMark({ className = "h-10", tone = "default" }: Props) {
   return (
     <img
-      src={logo.url}
+      src={logo}
       alt={`${BRAND} · ${BRAND_TAGLINE}`}
       className={`w-auto select-none ${className}`}
       style={
