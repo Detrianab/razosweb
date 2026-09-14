@@ -1,11 +1,11 @@
 import artLosRoques from "@/assets/art-los-roques.jpg";
 import artCanaima from "@/assets/art-canaima.jpg";
 import artMedanos from "@/assets/art-medanos-coro.jpg";
-import heroRoques from "@/assets/hero-image.png.asset.json";
-import heroCanaima from "@/assets/hero-image-2.png.asset.json";
-import heroMerida from "@/assets/hero-image-3.png.asset.json";
-import heroZulia from "@/assets/hero-image-4.png.asset.json";
-import heroFalcon from "@/assets/hero-image-5.png.asset.json";
+import heroRoques from "@/assets/hero-image.png";
+import heroCanaima from "@/assets/hero-image-2.webp";
+import heroMerida from "@/assets/hero-image-3.png";
+import heroZulia from "@/assets/hero-image-4.png";
+import heroFalcon from "@/assets/hero-image-5.png";
 
 export type Artwork = {
   slug: string;
