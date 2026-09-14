@@ -71,7 +71,7 @@ export const COLLECTIONS: Collection[] = [
     state: "Dependencias Federales",
     name: "Los Roques",
     blurb: "Turquesa, sal y arena blanca del archipiélago.",
-    cover: heroRoques.url,
+    cover: heroRoques,
     storyTitle: "El archipiélago que enseña a mirar el color",
     story:
       "Los Roques es un mapa de azules: el turquesa que se abre sobre el banco de arena, el cobalto del canal profundo y el blanco de la sal seca al mediodía. La colección nació de un vuelo bajo sobre Cayo de Agua, cuando el agua parecía tener bordes dibujados a mano.",
@@ -79,7 +79,7 @@ export const COLLECTIONS: Collection[] = [
       "El trazo se hizo con línea continua para imitar la corriente y se redujo a tres tintas planas: turquesa, azul profundo y blanco hueso. Recomendamos la franela en blanco hueso, con el dibujo adelante a 25 × 25 cm para que el azul respire.",
     designs: [
       { id: "roques-1", title: "Luz de Sal", image: artLosRoques },
-      { id: "roques-2", title: "Cayo de Agua", image: heroRoques.url },
+      { id: "roques-2", title: "Cayo de Agua", image: heroRoques },
     ],
   },
   {
@@ -87,7 +87,7 @@ export const COLLECTIONS: Collection[] = [
     state: "Bolívar",
     name: "Canaima",
     blurb: "Tepuyes, ríos negros y sabana infinita.",
-    cover: heroCanaima.url,
+    cover: heroCanaima,
     storyTitle: "Piedra antigua, agua que no se detiene",
     story:
       "Bolívar es la parte más vieja del país: tepuyes de mil millones de años, ríos color té y una sabana que no termina. El diseño se levantó desde el pie del salto, mirando hacia arriba, con la bruma cortando la silueta de la montaña.",
@@ -95,7 +95,7 @@ export const COLLECTIONS: Collection[] = [
       "La obra se separó en dos capas: la masa oscura del tepuy y el velo del agua. Se imprime en negro o azul marino para que la bruma en blanco hueso se sostenga; funciona espectacular con el dibujo grande en la espalda.",
     designs: [
       { id: "canaima-1", title: "Cielo de Piedra", image: artCanaima },
-      { id: "canaima-2", title: "Río del Tepuy", image: heroCanaima.url },
+      { id: "canaima-2", title: "Río del Tepuy", image: heroCanaima },
     ],
   },
   {
@@ -103,33 +103,33 @@ export const COLLECTIONS: Collection[] = [
     state: "Mérida",
     name: "Sierra Nevada",
     blurb: "El páramo, la nieve y el teleférico más alto del mundo.",
-    cover: heroMerida.url,
+    cover: heroMerida,
     storyTitle: "El páramo, el frío y la línea del teleférico",
     story:
       "Mérida se dibuja hacia arriba: frailejones, roca desnuda, nieve y el cable del teleférico más alto del mundo cruzando el cielo. La pieza recoge ese ascenso en una sola diagonal.",
     designNotes:
       "Se trabajó con muy pocos elementos: la diagonal del cable, la silueta del pico y el gris azulado del páramo. Es el diseño más discreto de la casa, pensado para el estampado de pecho izquierdo de 10 × 10 cm.",
-    designs: [{ id: "merida-1", title: "Pico Espejo", image: heroMerida.url }],
+    designs: [{ id: "merida-1", title: "Pico Espejo", image: heroMerida }],
   },
   {
     slug: "zulia",
     state: "Zulia",
     name: "Salinas de Zulia",
     blurb: "El rosado de las salinas contra el azul del Caribe.",
-    cover: heroZulia.url,
+    cover: heroZulia,
     storyTitle: "El rosado que aparece cuando baja el agua",
     story:
       "En la costa zuliana las salinas se vuelven rosadas y el Caribe queda azul al lado, sin transición. Esa frontera de color fue todo el punto de partida del diseño.",
     designNotes:
       "El estampado se resolvió como un bloque de color con el borde irregular de las pozas, sin línea negra. Va mejor sobre beige o blanco hueso, con la combinación pecho izquierdo más espalda.",
-    designs: [{ id: "zulia-1", title: "Salinas Rosadas", image: heroZulia.url }],
+    designs: [{ id: "zulia-1", title: "Salinas Rosadas", image: heroZulia }],
   },
   {
     slug: "falcon",
     state: "Falcón",
     name: "Médanos de Coro",
     blurb: "Dunas de arena naranja moldeadas por el viento.",
-    cover: heroFalcon.url,
+    cover: heroFalcon,
     storyTitle: "Dunas que cambian de forma cada tarde",
     story:
       "Los Médanos de Coro se mueven: el mismo lugar no se repite dos días seguidos. La colección captura la hora en que la arena pasa de amarillo a naranja quemado y la sombra se alarga.",
@@ -137,7 +137,7 @@ export const COLLECTIONS: Collection[] = [
       "Se usó una trama de líneas paralelas para dar el viento y solo dos tintas cálidas sobre marrón o beige. Lucen mejor grandes, adelante a 25 × 25 cm.",
     designs: [
       { id: "falcon-1", title: "Viento Dorado", image: artMedanos },
-      { id: "falcon-2", title: "Médanos", image: heroFalcon.url },
+      { id: "falcon-2", title: "Médanos", image: heroFalcon },
     ],
   },
 ];
