@@ -1,7 +1,9 @@
 .morph-slider {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 85vh; /* Reducido de 100% a 85vh para quitar el exceso de espacio vertical */
+  max-height: 750px; /* Evita que crezca demasiado en pantallas grandes */
+  margin: 0 auto;
   overflow: hidden;
   background: #0b0b0c;
   touch-action: auto;
@@ -29,7 +31,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 4.5rem;
+  bottom: 3.5rem; /* Ajustado para reducir espacio inferior */
   display: grid;
   place-items: center;
   pointer-events: none;
@@ -86,7 +88,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 2rem;
+  bottom: 1.5rem; /* Ajustado para acercar los indicadores al borde inferior */
   display: flex;
   justify-content: center;
   gap: 0.6rem;
