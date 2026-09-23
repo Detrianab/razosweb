@@ -61,7 +61,7 @@ export function CoverflowCarousel({ items, className = "" }: Props) {
       onPointerUp={onPointerUp}
     >
       <div
-        className="relative h-[420px] select-none sm:h-[520px]"
+        className="relative h-[420px] select-none overflow-hidden sm:h-[520px]"
         style={{ perspective: "1600px" }}
       >
         {items.map((item, i) => {
@@ -84,7 +84,7 @@ export function CoverflowCarousel({ items, className = "" }: Props) {
               aria-hidden={hidden}
               tabIndex={isActive ? 0 : -1}
               onClick={() => (isActive ? item.onSelect() : setActive(i))}
-              className="absolute top-1/2 left-1/2 w-[260px] cursor-pointer sm:w-[340px]"
+              className="absolute top-1/2 left-1/2 w-[72vw] max-w-[260px] cursor-pointer sm:w-[340px] sm:max-w-none"
               style={{
                 transform: `translate(-50%, -50%) translateX(${offset * 235}px) translateZ(${-abs * 260}px) rotateY(${offset * -38}deg) scale(${isActive ? 1 : 0.9})`,
                 opacity: hidden ? 0 : 1 - abs * 0.32,

@@ -151,13 +151,14 @@
     border-color: var(--color-border);
   }
 
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-  }
-
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
 }

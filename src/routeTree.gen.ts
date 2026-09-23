@@ -11,8 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BolsaRouteImport } from './routes/bolsa'
+import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as PersonalRouteImport } from './routes/personal'
+import { Route as PersonalizarRouteImport } from './routes/personalizar'
 import { Route as TallerRouteImport } from './routes/taller'
+import { Route as TiendaRouteImport } from './routes/tienda'
 import { Route as ColeccionSlugRouteImport } from './routes/coleccion.$slug'
+import { Route as TiendaProductSlugRouteImport } from './routes/tienda.$productSlug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,9 +29,29 @@ const BolsaRoute = BolsaRouteImport.update({
   path: '/bolsa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersonalRoute = PersonalRouteImport.update({
+  id: '/personal',
+  path: '/personal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersonalizarRoute = PersonalizarRouteImport.update({
+  id: '/personalizar',
+  path: '/personalizar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TallerRoute = TallerRouteImport.update({
   id: '/taller',
   path: '/taller',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TiendaRoute = TiendaRouteImport.update({
+  id: '/tienda',
+  path: '/tienda',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ColeccionSlugRoute = ColeccionSlugRouteImport.update({
@@ -34,38 +59,90 @@ const ColeccionSlugRoute = ColeccionSlugRouteImport.update({
   path: '/coleccion/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TiendaProductSlugRoute = TiendaProductSlugRouteImport.update({
+  id: '/$productSlug',
+  path: '/$productSlug',
+  getParentRoute: () => TiendaRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bolsa': typeof BolsaRoute
+  '/galeria': typeof GaleriaRoute
+  '/personal': typeof PersonalRoute
+  '/personalizar': typeof PersonalizarRoute
   '/taller': typeof TallerRoute
+  '/tienda': typeof TiendaRouteWithChildren
   '/coleccion/$slug': typeof ColeccionSlugRoute
+  '/tienda/$productSlug': typeof TiendaProductSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bolsa': typeof BolsaRoute
+  '/galeria': typeof GaleriaRoute
+  '/personal': typeof PersonalRoute
+  '/personalizar': typeof PersonalizarRoute
   '/taller': typeof TallerRoute
+  '/tienda': typeof TiendaRouteWithChildren
   '/coleccion/$slug': typeof ColeccionSlugRoute
+  '/tienda/$productSlug': typeof TiendaProductSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/bolsa': typeof BolsaRoute
+  '/galeria': typeof GaleriaRoute
+  '/personal': typeof PersonalRoute
+  '/personalizar': typeof PersonalizarRoute
   '/taller': typeof TallerRoute
+  '/tienda': typeof TiendaRouteWithChildren
   '/coleccion/$slug': typeof ColeccionSlugRoute
+  '/tienda/$productSlug': typeof TiendaProductSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/bolsa' | '/taller' | '/coleccion/$slug'
+  fullPaths:
+    | '/'
+    | '/bolsa'
+    | '/galeria'
+    | '/personal'
+    | '/personalizar'
+    | '/taller'
+    | '/tienda'
+    | '/coleccion/$slug'
+    | '/tienda/$productSlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/bolsa' | '/taller' | '/coleccion/$slug'
-  id: '__root__' | '/' | '/bolsa' | '/taller' | '/coleccion/$slug'
+  to:
+    | '/'
+    | '/bolsa'
+    | '/galeria'
+    | '/personal'
+    | '/personalizar'
+    | '/taller'
+    | '/tienda'
+    | '/coleccion/$slug'
+    | '/tienda/$productSlug'
+  id:
+    | '__root__'
+    | '/'
+    | '/bolsa'
+    | '/galeria'
+    | '/personal'
+    | '/personalizar'
+    | '/taller'
+    | '/tienda'
+    | '/coleccion/$slug'
+    | '/tienda/$productSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BolsaRoute: typeof BolsaRoute
+  GaleriaRoute: typeof GaleriaRoute
+  PersonalRoute: typeof PersonalRoute
+  PersonalizarRoute: typeof PersonalizarRoute
   TallerRoute: typeof TallerRoute
+  TiendaRoute: typeof TiendaRouteWithChildren
   ColeccionSlugRoute: typeof ColeccionSlugRoute
 }
 
@@ -85,11 +162,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BolsaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/personal': {
+      id: '/personal'
+      path: '/personal'
+      fullPath: '/personal'
+      preLoaderRoute: typeof PersonalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/personalizar': {
+      id: '/personalizar'
+      path: '/personalizar'
+      fullPath: '/personalizar'
+      preLoaderRoute: typeof PersonalizarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/taller': {
       id: '/taller'
       path: '/taller'
       fullPath: '/taller'
       preLoaderRoute: typeof TallerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tienda': {
+      id: '/tienda'
+      path: '/tienda'
+      fullPath: '/tienda'
+      preLoaderRoute: typeof TiendaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/coleccion/$slug': {
@@ -99,13 +204,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ColeccionSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tienda/$productSlug': {
+      id: '/tienda/$productSlug'
+      path: '/$productSlug'
+      fullPath: '/tienda/$productSlug'
+      preLoaderRoute: typeof TiendaProductSlugRouteImport
+      parentRoute: typeof TiendaRoute
+    }
   }
 }
+
+interface TiendaRouteChildren {
+  TiendaProductSlugRoute: typeof TiendaProductSlugRoute
+}
+
+const TiendaRouteChildren: TiendaRouteChildren = {
+  TiendaProductSlugRoute: TiendaProductSlugRoute,
+}
+
+const TiendaRouteWithChildren =
+  TiendaRoute._addFileChildren(TiendaRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BolsaRoute: BolsaRoute,
+  GaleriaRoute: GaleriaRoute,
+  PersonalRoute: PersonalRoute,
+  PersonalizarRoute: PersonalizarRoute,
   TallerRoute: TallerRoute,
+  TiendaRoute: TiendaRouteWithChildren,
   ColeccionSlugRoute: ColeccionSlugRoute,
 }
 export const routeTree = rootRouteImport

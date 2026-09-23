@@ -1,7 +1,15 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Trash2 } from "lucide-react";
 import { useBag } from "@/lib/bag";
-import { buildBagWhatsAppLink, findPlacement, WHATSAPP_DISPLAY } from "@/lib/trazos";
+import { placeOrder } from "@/lib/checkout.functions";
+import {
+  bagTotal,
+  buildBagWhatsAppLink,
+  findPlacement,
+  UNIT_PRICE,
+  WHATSAPP_DISPLAY,
+} from "@/lib/trazos";
 
 export const Route = createFileRoute("/bolsa")({
   ssr: false,
@@ -27,10 +35,49 @@ export const Route = createFileRoute("/bolsa")({
 
 function BagPage() {
   const { items, remove, setQty, clear, count } = useBag();
+  const [sending, setSending] = useState(false);
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
+
+  /** Registra el pedido (reserva stock) y abre WhatsApp. La bolsa no se vacía. */
+  const sendOrder = async () => {
+    setSending(true);
+    setError("");
+    const link = buildBagWhatsAppLink(items);
+    try {
+      const res = await placeOrder({
+        data: {
+          customer_name: "",
+          customer_whatsapp: "",
+          notes: "Pedido enviado desde la bolsa de la web",
+          items: items.map((i) => ({
+            kind: i.kind ?? "personalizada",
+            product_id: i.productId ?? null,
+            variant_id: i.variantId ?? null,
+            design_id: null,
+            title: i.designTitle,
+            collection_name: i.collectionName,
+            color_name: i.colorName,
+            size: i.size,
+            placement_id: i.placementId,
+            qty: i.qty,
+            unit_price: i.unitPrice ?? UNIT_PRICE,
+          })),
+        },
+      });
+      if (res.ok) setCode(res.order.code);
+      else setError("No pudimos reservar el stock: " + res.message);
+    } catch {
+      setError("No pudimos registrar el pedido, pero puedes escribirnos por WhatsApp.");
+    } finally {
+      setSending(false);
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
     <main className="min-h-screen bg-background pt-28 text-foreground">
-      <div className="mx-auto max-w-5xl px-6 pb-24">
+      <div className="mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12 pb-24">
         <p className="font-sans text-[0.6rem] uppercase tracking-[0.5em] text-accent">
           Bolsa de compras
         </p>
@@ -105,15 +152,22 @@ function BagPage() {
               })}
             </ul>
 
+            <div className="mt-10 flex items-baseline justify-between border-b border-border pb-6">
+              <span className="font-sans text-[0.62rem] uppercase tracking-[0.4em] text-muted-foreground">
+                Total
+              </span>
+              <span className="font-serif text-3xl">${bagTotal(items).toFixed(2)}</span>
+            </div>
+
             <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <a
-                href={buildBagWhatsAppLink(items)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-foreground px-12 py-5 font-sans text-[0.68rem] uppercase tracking-[0.4em] text-background transition-opacity hover:opacity-85"
+              <button
+                type="button"
+                disabled={sending}
+                onClick={() => void sendOrder()}
+                className="inline-block bg-foreground px-12 py-5 font-sans text-[0.68rem] uppercase tracking-[0.4em] text-background transition-opacity hover:opacity-85 disabled:opacity-50"
               >
-                Enviar pedido por WhatsApp
-              </a>
+                {sending ? "Registrando pedido…" : "Enviar pedido por WhatsApp"}
+              </button>
               <button
                 type="button"
                 onClick={clear}
@@ -122,8 +176,19 @@ function BagPage() {
                 Vaciar la bolsa
               </button>
             </div>
+            {code ? (
+              <p className="mt-6 font-sans text-[0.68rem] leading-relaxed text-accent">
+                Pedido {code} registrado. Queda en transacción hasta que lo confirmemos contigo.
+              </p>
+            ) : null}
+            {error ? (
+              <p className="mt-6 font-sans text-[0.68rem] leading-relaxed text-destructive">
+                {error}
+              </p>
+            ) : null}
             <p className="mt-6 font-sans text-[0.68rem] leading-relaxed text-muted-foreground">
-              Te escribiremos por WhatsApp ({WHATSAPP_DISPLAY}) con precio, disponibilidad y envío.
+              Te escribiremos por WhatsApp ({WHATSAPP_DISPLAY}) para confirmar disponibilidad y
+              envío. Tu bolsa se queda guardada aquí.
             </p>
           </>
         )}

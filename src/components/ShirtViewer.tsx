@@ -56,8 +56,11 @@ function Shirt({ color, artUrl, placement }: ShirtProps) {
   useLayoutEffect(() => {
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 8;
-    material.roughness = 0.82;
-    material.metalness = 0.03;
+    // Tela mate y plana: sin brillo ni relieve marcado, para que el estampado mande.
+    material.roughness = 0.97;
+    material.metalness = 0;
+    material.normalScale = new THREE.Vector2(0.15, 0.15);
+    material.envMapIntensity = 0.45;
   }, [texture, material]);
 
   useFrame(() => {
@@ -226,7 +229,6 @@ export function ShirtViewer({ ...shirt }: ShirtViewerProps) {
 
   return (
     <Canvas
-      shadows
       dpr={[1, 2]}
       camera={{ fov: 26, position: [0, 0, 2.2], near: 0.1, far: 100 }}
       gl={{ antialias: true }}
@@ -237,26 +239,20 @@ export function ShirtViewer({ ...shirt }: ShirtViewerProps) {
       style={{ touchAction: "pan-y" }}
       className="cursor-grab active:cursor-grabbing"
     >
-      <ambientLight intensity={0.4} />
-      <directionalLight
-        position={[3, 5, 4]}
-        intensity={1.5}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-      />
-      <directionalLight position={[-4, 2, -3]} intensity={0.5} />
+      <ambientLight intensity={0.95} />
+      <directionalLight position={[0, 2.5, 5]} intensity={0.85} />
+      <directionalLight position={[-4, 2, -3]} intensity={0.35} />
       <Environment resolution={256}>
-        <Lightformer intensity={2.4} position={[0, 4, 2]} scale={[8, 8, 1]} />
+        <Lightformer intensity={1.2} position={[0, 4, 2]} scale={[12, 12, 1]} />
         <Lightformer
-          intensity={1.1}
+          intensity={0.6}
           color="#f0e6d2"
           position={[-5, 1, -1]}
           rotation-y={Math.PI / 2}
           scale={[16, 2, 1]}
         />
         <Lightformer
-          intensity={0.9}
+          intensity={0.5}
           color="#8fa3b8"
           position={[5, 0, 1]}
           rotation-y={-Math.PI / 2}
@@ -267,7 +263,10 @@ export function ShirtViewer({ ...shirt }: ShirtViewerProps) {
       <Suspense fallback={<Loader />}>
         <Rig>
           <Center>
-            <Shirt {...shirt} />
+            {/* Corte oversize: hombros y cuerpo más anchos, caída más recta. */}
+            <group scale={[1.14, 1.04, 1.1]}>
+              <Shirt {...shirt} />
+            </group>
           </Center>
         </Rig>
       </Suspense>

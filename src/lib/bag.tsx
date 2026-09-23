@@ -36,7 +36,15 @@ export function BagProvider({ children }: { children: ReactNode }) {
   }, [items]);
 
   const add = useCallback((item: Omit<BagItem, "key">) => {
-    const key = [item.designId, item.colorName, item.size, item.placementId].join("|");
+    const key = [
+      item.kind ?? "personalizada",
+      item.garment ?? "",
+      item.designId,
+      item.variantId ?? "",
+      item.colorName,
+      item.size,
+      item.placementId,
+    ].join("|");
     setItems((prev) => {
       const found = prev.find((i) => i.key === key);
       if (found) {

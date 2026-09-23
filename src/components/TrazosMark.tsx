@@ -1,4 +1,4 @@
-import logo from "@/assets/trazos-logo-alpha.png";
+import logo from "@/assets/trazos-logo-alpha.png.asset.json";
 import { BRAND, BRAND_TAGLINE } from "@/lib/trazos";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 export function TrazosMark({ className = "h-10", tone = "default" }: Props) {
   return (
     <img
-      src={logo}
+      src={logo.url}
       alt={`${BRAND} · ${BRAND_TAGLINE}`}
       className={`w-auto select-none ${className}`}
       style={

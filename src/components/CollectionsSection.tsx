@@ -1,13 +1,15 @@
 import { useNavigate } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { CoverflowCarousel, type CarouselItem } from "@/components/ui/3-d-coverflow-carousel";
-import { COLLECTIONS } from "@/lib/trazos";
+import { collectionsQuery } from "@/lib/catalog";
 
 export function CollectionsSection() {
   const navigate = useNavigate();
+  const { data: collections } = useSuspenseQuery(collectionsQuery);
 
-  const items: CarouselItem[] = COLLECTIONS.map((c) => ({
+  const items: CarouselItem[] = collections.map((c) => ({
     id: c.slug,
-    image: c.cover,
+    image: c.cover_url,
     eyebrow: c.state,
     title: c.name,
     description: c.blurb,

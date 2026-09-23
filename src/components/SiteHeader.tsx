@@ -5,8 +5,10 @@ import { TrazosMark } from "@/components/TrazosMark";
 import { useBag } from "@/lib/bag";
 
 const LINKS = [
-  { label: "Ver en 3D", to: "/", hash: "visor" },
-  { label: "Colecciones", to: "/", hash: "colecciones" },
+  { label: "Tienda", to: "/tienda" },
+  { label: "Personalizar", to: "/personalizar" },
+  { label: "Galería", to: "/galeria" },
+  { label: "Solo personal", to: "/personal" },
 ] as const;
 
 export function SiteHeader() {
@@ -36,7 +38,6 @@ export function SiteHeader() {
             <Link
               key={l.label}
               to={l.to}
-              hash={l.hash}
               className="font-sans text-[0.6rem] uppercase tracking-[0.4em] text-muted-foreground transition-colors hover:text-foreground"
             >
               {l.label}
@@ -46,7 +47,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-4">
           <Link
-            to="/taller"
+            to="/personalizar"
             className="hidden bg-foreground px-6 py-3 font-sans text-[0.58rem] uppercase tracking-[0.4em] text-background transition-opacity hover:opacity-85 sm:inline-block"
           >
             Diseñar mi prenda
