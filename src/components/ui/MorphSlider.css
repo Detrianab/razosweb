@@ -4,7 +4,8 @@
   height: 100%;
   overflow: hidden;
   background: #0b0b0c;
-  touch-action: pan-y;
+  touch-action: auto;
+  overscroll-behavior: contain;
 }
 
 .morph-slider-stage {
